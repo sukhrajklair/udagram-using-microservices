@@ -1,0 +1,31 @@
+version: "3"
+services:
+    udagram-user-api:
+        build: ./udagram-user-api
+        image: sukhrajklair/udagram-user-api:latest
+        environment: 
+            - POSTGRES_USERNAME
+            - POSTGRES_PASSWORD
+            - POSTGRES_DATABASE
+            - POSTGRES_HOST
+            - AWS_REGION
+            - AWS_PROFILE
+            - AWS_MEDIA_BUCKET
+            - JWT_SECRET
+            - URL
+    udagram-feed-api:
+        build: ./udagram-feed-api  
+        image: sukhrajklair/udagram-feed-api:latest
+        environment: 
+            - POSTGRES_USERNAME
+            - POSTGRES_PASSWORD
+            - POSTGRES_DATABASE
+            - POSTGRES_HOST
+            - AWS_REGION
+            - AWS_PROFILE
+            - AWS_MEDIA_BUCKET
+            - JWT_SECRET
+            - URL
+    udagram-front-end:
+        build: ./udagram-front-end
+        image: sukhrajklair/udagram-front-end:latest
