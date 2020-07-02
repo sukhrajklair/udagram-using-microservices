@@ -1,0 +1,11 @@
+version: "3"
+services:
+    udagram-user-api:
+        build: ./udagram-user-api
+        image: sukhrajklair/udagram-user-api:latest
+    udagram-feed-api:
+        build: ./udagram-feed-api  
+        image: sukhrajklair/udagram-feed-api:latest
+    udagram-front-end:
+        build: ./udagram-front-end
+        image: sukhrajklair/udagram-front-end:latest
