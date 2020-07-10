@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: "udagram-ingress"
+  name: udagram-ingress
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -13,5 +13,5 @@ spec:
         paths:
           - path: /*
             backend:
-              serviceName: "udagram-front-end-svc"
+              serviceName: udagram-front-end-svc
               servicePort: 80

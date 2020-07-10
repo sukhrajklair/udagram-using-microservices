@@ -14,6 +14,7 @@ spec:
       containers:
       - name: udagram-feed-api
         image: sukhrajklair/udagram-feed-api:latest
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "128Mi"
