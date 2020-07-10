@@ -65,6 +65,13 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: URL
-
+        livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 2
         ports:
         - containerPort: 80

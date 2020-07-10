@@ -3,8 +3,12 @@ import {config} from './config/config';
 
 
 // Configure AWS
-const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-AWS.config.credentials = credentials;
+//if developing locally use the dev credentials saved locally else use the EC2 IAM role
+if (config.aws_profile !== "DEPLOYED")
+{
+  const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+  AWS.config.credentials = credentials;
+}
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
