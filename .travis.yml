@@ -14,5 +14,5 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo 'dockerhub credentials configured'
 install:
-  - docker-compose build --parallel 
-  - docker-compose push
+  - docker-compose build --parallel .docker/docker-compose.yaml
+  - docker-compose push .docker/docker-compose.yaml

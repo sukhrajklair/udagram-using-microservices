@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-front-end
+spec:
+  selector:
+    matchLabels:
+      app: udagram-front-end
+  template:
+    metadata:
+      labels:
+        app: udagram-front-end
+    spec:
+      containers:
+      - name: udagram-front-end
+        image: sukhrajklair/udagram-front-end:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: POSTGRES_USERNAME
+            valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: POSTGRES_USERNAME
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: POSTGRES_PASSWORD
+          - name: POSTGRES_DATABASE
+            valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: POSTGRES_DATABASE
+          - name: POSTGRES_HOST
+            valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: POSTGRES_HOST
+          - name: AWS_REGION
+            valueFrom:
+                secretKeyRef:
+                  name: aws-config
+                  key: AWS_REGION    
+          - name: AWS_PROFILE
+            valueFrom:
+                secretKeyRef:
+                  name: aws-config
+                  key: AWS_PROFILE
+          - name: AWS_MEDIA_BUCKET
+            valueFrom:
+                secretKeyRef:
+                  name: aws-config
+                  key: AWS_MEDIA_BUCKET
+          - name: JWT_SECRET
+            valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: JWT_SECRET
+          - name: URL
+            valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: URL
+        livenessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 2
+        ports:
+        - containerPort: 4200
