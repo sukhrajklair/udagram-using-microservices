@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: udagram-feed-api
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: udagram-feed-api
@@ -11,6 +12,7 @@ spec:
       labels:
         app: udagram-feed-api
     spec:
+      
       containers:
       - name: udagram-feed-api
         image: sukhrajklair/udagram-feed-api:latest
